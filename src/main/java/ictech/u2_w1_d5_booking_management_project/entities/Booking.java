@@ -19,15 +19,15 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "booking_date")
+    @Column(name = "booking_date", nullable = false)
     private LocalDate bookingDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "workstation_id")
+    @JoinColumn(name = "workstation_id", nullable = false)
     private Workstation workstation;
 
     public Booking(LocalDate bookingDate, User user, Workstation workstation) {

@@ -18,16 +18,18 @@ public class Building {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String city;
 
     @OneToMany(mappedBy = "building")
     @ToString.Exclude
     private List<Workstation> workstations;
 
-    public Building(long id, String name, String address, String city) {
-        this.id = id;
+    public Building(String name, String address, String city) {
         this.name = name;
         this.address = address;
         this.city = city;

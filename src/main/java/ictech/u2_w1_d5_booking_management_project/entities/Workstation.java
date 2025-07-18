@@ -17,15 +17,18 @@ public class Workstation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true, nullable = false)
     private String code;
+    @Column(nullable = false)
     private String description;
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private WorkstationType type;
-    @Column(name = "max_occupants")
+    @Column(name = "max_occupants", nullable = false)
     private int maxOccupants;
 
     @ManyToOne
-    @JoinColumn(name = "building_id")
+    @JoinColumn(name = "building_id", nullable = false)
     private Building building;
 
     public Workstation(String code, String description, WorkstationType type, int maxOccupants, Building building) {
