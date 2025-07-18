@@ -106,5 +106,9 @@ public class BookingRunner implements CommandLineRunner {
 
         System.out.println("Found " + results.size() + " workstations of type " + searchType + " in " + searchCity + ":");
         results.forEach(ws -> System.out.println("- " + ws.getCode() + ": " + ws.getDescription()));
+
+        // 2nd test with no results
+        List<Workstation> noResults = workstationService.findWorkstationsByTypeAndCity(WorkstationType.OPENSPACE, "Zurich");
+        System.out.println("Found " + noResults.size() + " results.");
     }
 }
