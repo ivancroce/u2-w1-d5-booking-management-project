@@ -13,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class BookingRunner implements CommandLineRunner {
@@ -89,5 +90,21 @@ public class BookingRunner implements CommandLineRunner {
         } catch (BookingNotAvailableException e) {
             System.out.println(e.getMessage());
         }*/
+
+        /*try {
+           //  System.out.println("[Attempt 4] Giovanni Storti is booking the same private office in Dublin but different date");
+           //  bookingService.save(giovanniUsername, metaOfficeId, testDate.plusDays(14));
+        } catch (BookingNotAvailableException e) {
+            System.out.println(e.getMessage());
+        }*/
+
+        // Search by workstation type and building city
+        WorkstationType searchType = WorkstationType.PRIVATE;
+        String searchCity = "Dublin";
+
+        List<Workstation> results = workstationService.findWorkstationsByTypeAndCity(searchType, searchCity);
+
+        System.out.println("Found " + results.size() + " workstations of type " + searchType + " in " + searchCity + ":");
+        results.forEach(ws -> System.out.println("- " + ws.getCode() + ": " + ws.getDescription()));
     }
 }
